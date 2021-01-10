@@ -6,3 +6,6 @@ init: .env
 
 up:
 	node src/index.js
+
+forever-up:
+	forever start src/index.js

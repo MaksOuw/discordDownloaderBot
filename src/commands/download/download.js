@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+const Discord = require('discord.js')
 const { Command } = require('discord.js-commando');
 
 const fetch = require('node-fetch')
@@ -52,12 +53,13 @@ module.exports = class DownloadCommand extends Command {
     {
       console.log("Start downloading " + file.filename + "...")
       msg.say('Téléchargement de ' + file.filename + ' en cours')
+      const progress = await msg.say('Avancement : 0%')
       const output = fs.createWriteStream("data/"+file.filename)
       let responseData = ''
       let lastPercent = 0
       const download = https.get(json.url, (response) => {
-        responseLength = response.headers['content-length']
-        length = []
+        let responseLength = response.headers['content-length']
+        let length = []
 
         response.on('data', (d) => {
           responseData += d
@@ -66,16 +68,13 @@ module.exports = class DownloadCommand extends Command {
           let completedPercentage = Math.floor((sum / responseLength) * 100)
           if(completedPercentage > lastPercent) {
             console.log(`${completedPercentage} % downloaded`)
+            progress.edit(`Avancement : ${completedPercentage}%`)
             lastPercent = completedPercentage
-          }
-          if(completedPercentage === 50)
-          {
-            msg.say('Téléchargement de ' + file.filename + ' à 50%')
           }
         })
         response.on('end', () => {
           output.write(responseData)
-          msg.say('Téléchargement de ' + file.filename + ' terminé')
+          msg.say('<@' + msg.author.id + '>: Téléchargement de ' + file.filename + ' terminé')
 	})
       })
     }  
