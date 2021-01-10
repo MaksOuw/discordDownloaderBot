@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/MaksOuw/onefichierDownloader#readme",
   "dependencies": {
+    "discord.js": "^12.5.1",
+    "discord.js-commando": "github:discordjs/Commando",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "http": "0.0.1-security",
