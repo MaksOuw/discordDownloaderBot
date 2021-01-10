@@ -1,0 +1,26 @@
+{
+  "name": "OnefichierDownloaderBot",
+  "version": "1.0.0",
+  "description": "Downloader for 1Fichier",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaksOuw/onefichierDownloader.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaksOuw/onefichierDownloader/issues"
+  },
+  "homepage": "https://github.com/MaksOuw/onefichierDownloader#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "node-fetch": "^2.6.1"
+  }
+}
