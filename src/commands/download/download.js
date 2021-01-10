@@ -51,7 +51,7 @@ module.exports = class DownloadCommand extends Command {
     else
     {
       console.log("Start downloading " + file.filename + "...")
-      mqg.say('Téléchargement de ' + file.filename + ' en cours')
+      msg.say('Téléchargement de ' + file.filename + ' en cours')
       const output = fs.createWriteStream("data/"+file.filename)
       let responseData = ''
       let lastPercent = 0
