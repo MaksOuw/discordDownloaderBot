@@ -1,3 +1,4 @@
 .env
 apikey.txt
 node_modules
+data/*

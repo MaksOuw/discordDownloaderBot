@@ -24,6 +24,8 @@
     "express": "^4.17.1",
     "forever": "^3.0.4",
     "http": "0.0.1-security",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "request": "^2.88.2",
+    "request-progress": "^3.0.0"
   }
 }

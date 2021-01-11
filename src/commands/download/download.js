@@ -6,6 +6,8 @@ const { Command } = require('discord.js-commando');
 const fetch = require('node-fetch')
 const https = require('https')
 const fs = require('fs')
+const request = require('request')
+const progress = require('request-progress')
 
 const apiKey = process.env.API_KEY
 const tokenApiUrl = "https://api.1fichier.com/v1/download/get_token.cgi"
@@ -53,30 +55,31 @@ module.exports = class DownloadCommand extends Command {
     {
       console.log("Start downloading " + file.filename + "...")
       msg.say('Téléchargement de ' + file.filename + ' en cours')
-      const progress = await msg.say('Avancement : 0%')
+      const progressMsg = await msg.say('Avancement : 0%')
       const output = fs.createWriteStream("data/"+file.filename)
-      let responseData = ''
+      //let responseData = ''
       let lastPercent = 0
-      const download = https.get(json.url, (response) => {
-        let responseLength = response.headers['content-length']
-        let length = []
-
-        response.on('data', (d) => {
-          responseData += d
-          length.push(d.length)
-          let sum = length.reduce((a, b) => a + b, 0);
-          let completedPercentage = Math.floor((sum / responseLength) * 100)
-          if(completedPercentage > lastPercent) {
-            console.log(`${completedPercentage} % downloaded`)
-            progress.edit(`Avancement : ${completedPercentage}%`)
-            lastPercent = completedPercentage
-          }
-        })
-        response.on('end', () => {
-          output.write(responseData)
+      const download = progress(request(json.url), {})
+        .on('progress', (state) => {
+          let percentage = Math.trunc(state.percent * 100)
+          let speed = Math.trunc(state.speed / 1000)
+          if(percentage > lastPercent)
+          {
+            progressMsg.edit(`Avancement : ${percentage}% - ${speed} kb/s - Reste ${state.time.remaining}s`)
+            console.log(`Avancement : ${percentage}% - ${speed} kb/s - Reste ${state.time.remaining}s`)
+            lastPercent = percentage
+	  }
+	})
+        .on('error', (error) => {
+          console.log(error)
+          msg.say(error)
+	})
+        .on('end', () => {
+          progressMsg.edit(`Avancement : 100%`)
+          console.log('Avancement : 100%')
           msg.say('<@' + msg.author.id + '>: Téléchargement de ' + file.filename + ' terminé')
 	})
-      })
+        .pipe(output)
     }  
   }
 }
