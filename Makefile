@@ -1,5 +1,5 @@
 .env:
-	cp .env.example .env
+	[ ! -f .env ] cp .env.example .env
 
 init: .env
 	npm install

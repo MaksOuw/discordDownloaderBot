@@ -1,5 +1,8 @@
 # OneFichier Downloader
-Discord bot to download 1fichier files.
+Discord bot to download files.  
+Available hosts : 
+- 1fichier
+- UpToBox
 
 ## Setup
 `make init`
