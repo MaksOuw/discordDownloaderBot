@@ -1,22 +1,22 @@
 {
-  "name": "OnefichierDownloaderBot",
+  "name": "DiscordDownloaderBot",
   "version": "1.0.0",
-  "description": "Downloader for 1Fichier",
+  "description": "Discord Downloader Bot for specific hosts",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MaksOuw/onefichierDownloader.git"
+    "url": "git+https://github.com/MaksOuw/discordDownloaderBot.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MaksOuw/onefichierDownloader/issues"
+    "url": "https://github.com/MaksOuw/discordDownloaderBot/issues"
   },
-  "homepage": "https://github.com/MaksOuw/onefichierDownloader#readme",
+  "homepage": "https://github.com/MaksOuw/discordDownloaderBot#readme",
   "dependencies": {
     "discord.js": "^12.5.1",
     "discord.js-commando": "github:discordjs/Commando",
