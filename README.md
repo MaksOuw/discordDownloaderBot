@@ -6,6 +6,7 @@ Available hosts :
 
 ## Setup
 `make init`
+Don't forget to fill .env file with your API keys and Discord bot API key
 
 ## Launch
 `make up`
