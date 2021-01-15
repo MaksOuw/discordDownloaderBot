@@ -3,6 +3,7 @@ require('dotenv').config()
 const { Command } = require('discord.js-commando');
 
 const OneFichier = require('../../hosts/onefichier.js');
+const UpToBox = require('../../hosts/uptobox')
 
 module.exports = class DownloadCommand extends Command {
   constructor(client) {
@@ -23,6 +24,10 @@ module.exports = class DownloadCommand extends Command {
     if(postData.url.includes("1fichier"))
     {
       await (new OneFichier).download(msg, postData)
+    }
+    else if(postData.url.includes("uptobox"))
+    {
+      await (new UpToBox).download(msg, postData)
     }
     else
     {
