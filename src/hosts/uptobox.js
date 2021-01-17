@@ -31,6 +31,7 @@ module.exports = class UpToBox {
       console.log("File has not been found")
       return msg.say("Le fichier n'a pas été trouvé")
     }
+
     if(json.data.waiting && json.data.waiting > 0)
     {
       console.log('Waiting 30 seconds because of free account')
@@ -39,7 +40,7 @@ module.exports = class UpToBox {
       console.log("Finish waiting, getting download URL")
       msg.say('Attente terminée, récupération du lien de téléchargement')
       const waitingToken = json.data.waitingToken
-      response = await fetch(tokenApiUrl + `?token=${apiKey}&file_code=${fileCode}&waiting_token=${waitingToken}`)
+      response = await fetch(tokenApiUrl + `?token=${apiKey}&file_code=${fileCode}&waitingToken=${waitingToken}`)
       json = await response.json()
     }
 
